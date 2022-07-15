@@ -12,11 +12,20 @@ all_variants = [
     ]
 
 for current_variant in all_variants:
-    print(json.dumps({
-        "when":{
-            "type":f"{current_variant}_post"
+    open(f"recipes/{current_variant}_post.json", "w").write(json.dumps({
+        "type": "minecraft:crafting_shaped",
+        "pattern": [
+            "#",
+            "#",
+            "#"
+        ],
+        "key": {
+            "#": {
+                "item": f"minecraft:{current_variant}"
+            }
         },
-        "apply":{
-            "model":f"homegrown:block/{current_variant}_post"
+        "result": {
+            "item": f"homegrown:{current_variant}_post",
+            "count": 4
         }
-    }, sort_keys=True, indent=4) + ",")
+    }, sort_keys=True, indent=4))
